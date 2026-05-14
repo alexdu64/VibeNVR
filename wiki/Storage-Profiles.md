@@ -1,0 +1,71 @@
+# Multiple Storage Profiles
+
+VibeNVR allows you to map different cameras to different storage locations on your host system. This enables flexible storage strategies, such as manually separating recordings based on performance needs:
+- **SSD**: Use for cameras requiring fast access or high-res snapshots.
+- **NAS/HDD**: Use for cameras with high-volume, long-term recordings.
+
+## Concepts
+
+### Default Storage
+By default, all recordings are stored in `/var/lib/vibe/recordings` (mapped to `./data/recordings` or similar in docker-compose).
+
+### Storage Profile
+A Storage Profile defines:
+- **Name**: A friendly label (e.g., "NAS Primary").
+- **Path**: An absolute path inside the VibeNVR containers (e.g., `/storage/nas`).
+- **Quota**: A maximum capacity in GB. When exceeded, the oldest events *across all cameras* using this profile are purged first.
+
+## Setup Guide
+
+### 1. Mount the External Volume
+Before creating a profile in the UI, you must ensure the external storage is mounted into the VibeNVR containers in your `docker-compose.yml`.
+
+Example:
+```yaml
+services:
+  backend:
+    volumes:
+      - /mnt/synology/nvr:/storage/nas
+  engine:
+    volumes:
+      - /mnt/synology/nvr:/storage/nas
+```
+
+### 2. Create the Profile
+1. Navigate to **Settings** -> **Storage Management**.
+2. Click **Add Profile**.
+3. Enter the name and the **absolute container path** (e.g., `/storage/nas`).
+4. Set an optional quota (GB).
+
+### 3. Assign Cameras
+1. Edit a **Camera** configuration.
+2. In the **General** tab, select the desired **Storage Profile**.
+3. Save the camera settings. The engine will automatically begin saving new recordings to the new path.
+
+## How Quotas Work
+VibeNVR employs a hierarchical, **reactive** cleanup strategy. The system automatically calculates the **Effective Limit** for each camera to ensure compliance with both local and global policies:
+
+1. **Effective Limit Calculation**: The UI and Backend prioritize the most restrictive value between the individual camera setting and the global quota. 
+   - *Example*: If a Camera is set to 10GB but the Global Quota is 5GB, the Effective Limit is **5GB**.
+2. **Camera-Level Controls**: Users can define specific `Max Storage (GB)` and `Retention (Days)` per camera.
+3. **Profile/Global Limit**: The system ensures the total disk usage across all cameras remains within the defined profile or global quota, purging the oldest events from any camera as needed.
+
+## Storage Maintenance & Breakdown
+The **Storage Management** section in Settings provides a detailed breakdown of space usage:
+- **Real-time Metrics**: See exactly how many GBs of Video and Snapshots each camera is consuming.
+- **Granular Cleanup**: Use the dedicated **Cleanup** buttons (Trash icons) in the breakdown table to manually purge only videos or only snapshots for a specific camera.
+- **Action Targets**: Maintenance buttons are optimized with large (44x44px) hit targets for high precision on both Desktop and Mobile.
+
+> [!TIP]
+> Use the **Breakdown Table** to identify "storage-hungry" cameras and adjust their individual retention settings or assign them to a dedicated Storage Profile.
+
+> [!NOTE]
+> **Reactive Monitoring**: Cleanup tasks run every **10 minutes** for quota violations and emergency disk space checks. This is independent of the full retention cycle (Every Hour/Day), ensuring the system remains responsive to rapid disk usage spikes.
+
+## Disk Safety
+If the total free space on the `/data` volume falls below **5%**, VibeNVR triggers an **Emergency Cleanup**. It will purge the oldest events from the system regardless of quotas or retention settings until at least 10% free space is recovered. This protects the database and OS from filesystem exhaustion.
+
+## Technical Notes
+- **Path Traversal**: For security, paths cannot contain `..` and must start with `/`.
+- **Engine Sync**: When a camera's profile is changed, a new configuration is pushed to the VibeEngine, which immediately redirects its write streams.
+- **Backups**: Storage profiles are included in system backups. If you restore a backup to a new system, ensure the same paths are mounted in Docker.
