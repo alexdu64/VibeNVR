@@ -6,7 +6,10 @@
     "cancel": "Annuler",
     "clear": "Effacer",
     "selectAll": "Tout sélectionner",
+    "deselectAll": "Tout désélectionner",
     "reset": "Réinitialiser",
+    "download": "Télécharger",
+    "delete": "Supprimer",
     "deleteSelected": "Supprimer la sélection"
   },
   "cameras": {
@@ -26,6 +29,24 @@
     }
   },
   "timeline": {
+    "eventAlt": "Événement",
+    "card": {
+      "thumbnail": "Aperçu",
+      "typeVideo": "Vid",
+      "typeImage": "Img",
+      "storedOn": "Stocké sur : {{name}}"
+    },
+    "preview": {
+      "selectEvent": "Sélectionnez un événement à prévisualiser",
+      "autoNext": "Lecture auto",
+      "newestFirst": "Plus récent → Plus ancien",
+      "oldestFirst": "Plus ancien → Plus récent",
+      "eventDetails": "Détails de l'événement",
+      "noVideoSupport": "Votre navigateur ne supporte pas la vidéo."
+    },
+    "bulkBar": {
+      "delete": "Supprimer {{count}}"
+    },
     "filters": {
       "allCameras": "Toutes les caméras",
       "allMedia": "Tous les médias",

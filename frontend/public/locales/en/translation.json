@@ -6,7 +6,10 @@
     "cancel": "Cancel",
     "clear": "Clear",
     "selectAll": "Select All",
+    "deselectAll": "Deselect All",
     "reset": "Reset",
+    "download": "Download",
+    "delete": "Delete",
     "deleteSelected": "Delete Selected"
   },
   "cameras": {
@@ -26,6 +29,24 @@
     }
   },
   "timeline": {
+    "eventAlt": "Event",
+    "card": {
+      "thumbnail": "Thumbnail",
+      "typeVideo": "Vid",
+      "typeImage": "Img",
+      "storedOn": "Stored on: {{name}}"
+    },
+    "preview": {
+      "selectEvent": "Select an event to preview",
+      "autoNext": "Auto-next",
+      "newestFirst": "Newest → Oldest",
+      "oldestFirst": "Oldest → Newest",
+      "eventDetails": "Event Details",
+      "noVideoSupport": "Your browser does not support video."
+    },
+    "bulkBar": {
+      "delete": "Delete {{count}}"
+    },
     "filters": {
       "allCameras": "All Cameras",
       "allMedia": "All Media",
