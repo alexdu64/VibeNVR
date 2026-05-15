@@ -1,6 +1,47 @@
 {
   "welcome": "Bienvenue",
   "settings": "Paramètres",
+  "common": {
+    "confirm": "Confirmer",
+    "cancel": "Annuler"
+  },
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "cameras": "Caméras",
+    "live": "Vue en direct",
+    "timeline": "Chronologie",
+    "settings": "Paramètres",
+    "logs": "Journaux système",
+    "about": "À propos",
+    "logout": "Déconnexion",
+    "lightMode": "Mode clair",
+    "darkMode": "Mode sombre",
+    "newVersionAvailable": "Nouvelle version disponible !"
+  },
+  "storage": {
+    "title": "Profils de stockage personnalisés",
+    "subtitle": "Associez les enregistrements à différents volumes hôtes (ex. SSD pour le mouvement, NAS pour le stockage long terme).",
+    "addProfile": "Ajouter un profil",
+    "profileName": "Nom du profil",
+    "profileNamePlaceholder": "ex. Enregistrements SSD",
+    "absolutePath": "Chemin absolu",
+    "absolutePathPlaceholder": "ex. /storage/ssd",
+    "absolutePathHelp": "Chemin dans le conteneur. Ce chemin doit être monté dans docker-compose (ex. VIBENVR_STORAGE_SSD: /storage/ssd).",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Description optionnelle",
+    "maxSize": "Taille max (Go)",
+    "maxSizeHelp": "Réservé pour usage futur (quota par profil). Mettre 0 pour illimité.",
+    "createProfile": "Créer le profil",
+    "updateProfile": "Mettre à jour le profil",
+    "noneConfigured": "Aucun profil de stockage personnalisé configuré.",
+    "defaultPath": "Les enregistrements utiliseront le chemin par défaut défini dans le moteur.",
+    "deleteTitle": "Supprimer le profil de stockage",
+    "deleteMessage": "Êtes-vous sûr de vouloir supprimer ce profil ? Les caméras utilisant ce profil reviendront au chemin de stockage par défaut.",
+    "profileCreated": "Profil créé avec succès",
+    "profileUpdated": "Profil mis à jour avec succès",
+    "profileDeleted": "Profil supprimé",
+    "deleteFailed": "Échec de la suppression"
+  },
   "system": {
     "startingUp": "VibeNVR démarre",
     "waitingMessage": "Nous attendons l'initialisation de tous les composants système. Cela prend généralement moins d'une minute.",

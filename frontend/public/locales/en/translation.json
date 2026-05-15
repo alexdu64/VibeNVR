@@ -1,6 +1,47 @@
 {
   "welcome": "Welcome",
   "settings": "Settings",
+  "common": {
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "cameras": "Cameras",
+    "live": "Live View",
+    "timeline": "Timeline",
+    "settings": "Settings",
+    "logs": "System Logs",
+    "about": "About",
+    "logout": "Logout",
+    "lightMode": "Light Mode",
+    "darkMode": "Dark Mode",
+    "newVersionAvailable": "New version available!"
+  },
+  "storage": {
+    "title": "Custom Storage Profiles",
+    "subtitle": "Map recordings to different host volumes (e.g., SSD for motion, NAS for long-term storage).",
+    "addProfile": "Add Profile",
+    "profileName": "Profile Name",
+    "profileNamePlaceholder": "e.g. SSD Recordings",
+    "absolutePath": "Absolute Path",
+    "absolutePathPlaceholder": "e.g. /storage/ssd",
+    "absolutePathHelp": "Container path. This path must be mounted in docker-compose (e.g., VIBENVR_STORAGE_SSD: /storage/ssd).",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Optional description",
+    "maxSize": "Max Size (GB)",
+    "maxSizeHelp": "Reserved for future use (quota per profile). Set to 0 for unlimited.",
+    "createProfile": "Create Profile",
+    "updateProfile": "Update Profile",
+    "noneConfigured": "No custom storage profiles configured.",
+    "defaultPath": "Recordings will use the default path defined in the engine.",
+    "deleteTitle": "Delete Storage Profile",
+    "deleteMessage": "Are you sure you want to delete this profile? Cameras using this profile will revert to the default storage path.",
+    "profileCreated": "Profile created successfully",
+    "profileUpdated": "Profile updated successfully",
+    "profileDeleted": "Profile deleted",
+    "deleteFailed": "Delete failed"
+  },
   "system": {
     "startingUp": "VibeNVR is starting up",
     "waitingMessage": "We are waiting for all system components to initialize. This usually takes less than a minute.",
