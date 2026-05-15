@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { LayoutDashboard, Camera, Film, History, Settings, LogOut, Moon, Sun, X, Info, FileText } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../contexts/AuthContext';
 import { Avatar } from '../ui/Avatar';
 import packageJson from '../../../package.json';
@@ -19,6 +20,7 @@ const SidebarItem = ({ icon: Icon, label, active, onClick }) => (
 );
 
 export const Sidebar = ({ activeTab, onTabChange, theme, toggleTheme, isOpen, onClose }) => {
+    const { t } = useTranslation();
     const { user, logout } = useAuth();
     const [latestVersion, setLatestVersion] = useState(null);
 
@@ -37,14 +39,14 @@ export const Sidebar = ({ activeTab, onTabChange, theme, toggleTheme, isOpen, on
     }, []);
 
     const menuItems = [
-        { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-        { id: 'cameras', label: 'Cameras', icon: Camera },
-        { id: 'live', label: 'Live View', icon: Film },
-        { id: 'timeline', label: 'Timeline', icon: History },
+        { id: 'dashboard', label: t('nav.dashboard'), icon: LayoutDashboard },
+        { id: 'cameras', label: t('nav.cameras'), icon: Camera },
+        { id: 'live', label: t('nav.live'), icon: Film },
+        { id: 'timeline', label: t('nav.timeline'), icon: History },
 
-        ...(user?.role !== 'viewer' ? [{ id: 'settings', label: 'Settings', icon: Settings }] : []),
-        ...(user?.role === 'admin' ? [{ id: 'logs', label: 'System Logs', icon: FileText }] : []),
-        { id: 'about', label: 'About', icon: Info },
+        ...(user?.role !== 'viewer' ? [{ id: 'settings', label: t('nav.settings'), icon: Settings }] : []),
+        ...(user?.role === 'admin' ? [{ id: 'logs', label: t('nav.logs'), icon: FileText }] : []),
+        { id: 'about', label: t('nav.about'), icon: Info },
     ];
 
     return (
@@ -95,7 +97,7 @@ export const Sidebar = ({ activeTab, onTabChange, theme, toggleTheme, isOpen, on
                     <span className="font-medium text-sm truncate">{user?.username}</span>
                 </button>
 
-                <SidebarItem icon={LogOut} label="Logout" onClick={logout} />
+                <SidebarItem icon={LogOut} label={t('nav.logout')} onClick={logout} />
 
                 <button
                     onClick={toggleTheme}
@@ -107,7 +109,7 @@ export const Sidebar = ({ activeTab, onTabChange, theme, toggleTheme, isOpen, on
                         <Moon className="w-5 h-5 group-hover:text-blue-500 transition-colors" />
                     )}
                     <span className="font-medium text-sm">
-                        {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+                        {theme === 'dark' ? t('nav.lightMode') : t('nav.darkMode')}
                     </span>
                 </button>
 
@@ -129,7 +131,7 @@ export const Sidebar = ({ activeTab, onTabChange, theme, toggleTheme, isOpen, on
                             title={`New version ${latestVersion} is available`}
                             className="text-[10px] text-primary animate-pulse font-semibold hover:underline bg-primary/10 px-2 py-0.5 rounded-full"
                         >
-                            New version available!
+                            {t('nav.newVersionAvailable')}
                         </a>
                     )}
                 </div>
