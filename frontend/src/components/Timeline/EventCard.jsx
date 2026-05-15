@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Video, Image as ImageIcon, Download, Trash2, Camera, HardDrive, Brain } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../contexts/AuthContext';
 
 /**
@@ -15,6 +16,7 @@ import { useAuth } from '../../contexts/AuthContext';
  * @param {Function} props.onDelete - Handler for single event deletion
  */
 export const EventCard = ({ event, onClick, camera, isSelected, isMultiSelected, onToggleSelect, getMediaUrl, onDelete }) => {
+    const { t } = useTranslation();
     const { user } = useAuth();
     const [imgError, setImgError] = useState(false);
     const time = new Date(event.timestamp_start).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -34,7 +36,7 @@ export const EventCard = ({ event, onClick, camera, isSelected, isMultiSelected,
                     <img
                         src={getMediaUrl(event.thumbnail_path)}
                         loading="lazy"
-                        alt="Thumbnail"
+                        alt={t('timeline.card.thumbnail')}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                         onError={() => setImgError(true)}
                     />
@@ -42,7 +44,7 @@ export const EventCard = ({ event, onClick, camera, isSelected, isMultiSelected,
                     <img
                         src={getMediaUrl(event.file_path)}
                         loading="lazy"
-                        alt="Event"
+                        alt={t('timeline.eventAlt')}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                         onError={() => setImgError(true)}
                     />
@@ -79,7 +81,7 @@ export const EventCard = ({ event, onClick, camera, isSelected, isMultiSelected,
                         download
                         onClick={(e) => e.stopPropagation()}
                         className="p-1 bg-black/50 hover:bg-black/70 text-white rounded backdrop-blur-sm transition-colors"
-                        title="Download"
+                        title={t('common.download')}
                     >
                         <Download className="w-3 h-3" />
                     </a>
@@ -92,7 +94,7 @@ export const EventCard = ({ event, onClick, camera, isSelected, isMultiSelected,
                                 onDelete(event.id);
                             }}
                             className="p-1 bg-black/50 hover:bg-red-500/80 text-white rounded backdrop-blur-sm transition-colors"
-                            title="Delete"
+                            title={t('common.delete')}
                         >
                             <Trash2 className="w-3 h-3" />
                         </button>
@@ -103,7 +105,7 @@ export const EventCard = ({ event, onClick, camera, isSelected, isMultiSelected,
                 <div className={`absolute top-1 left-1 px-1.5 py-0.5 rounded text-[9px] font-bold uppercase
                 ${event.type === 'video' ? 'bg-blue-500 text-white' : 'bg-amber-500 text-white'}
             `}>
-                    {event.type === 'video' ? 'Vid' : 'Img'}
+                    {event.type === 'video' ? t('timeline.card.typeVideo') : t('timeline.card.typeImage')}
                 </div>
 
                 {/* Motion indicator */}
@@ -119,7 +121,7 @@ export const EventCard = ({ event, onClick, camera, isSelected, isMultiSelected,
                         <Camera className="w-3 h-3 text-primary" />
                         <span className="text-xs font-semibold truncate">{camera?.name || `Camera ${event.camera_id}`}</span>
                         {camera?.storage_profile && (
-                            <div className="flex items-center ml-1 text-[8px] bg-primary/10 text-primary px-1 rounded-sm border border-primary/20" title={`Stored on: ${camera.storage_profile.name}`}>
+                            <div className="flex items-center ml-1 text-[8px] bg-primary/10 text-primary px-1 rounded-sm border border-primary/20" title={t('timeline.card.storedOn', { name: camera.storage_profile.name })}>
                                 <HardDrive className="w-2 h-2 mr-0.5" />
                                 <span className="uppercase font-bold">{camera.storage_profile.name}</span>
                             </div>
