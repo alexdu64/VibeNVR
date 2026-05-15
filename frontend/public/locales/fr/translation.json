@@ -1,6 +1,47 @@
 {
   "welcome": "Bienvenue",
   "settings": "Paramètres",
+  "about": {
+    "logoAlt": "Logo VibeNVR",
+    "tagline": "L'enregistreur vidéo réseau moderne, performant et élégant",
+    "betaSuffix": "Bêta",
+    "openSource": "Open Source",
+    "whyTitle": "Pourquoi VibeNVR ?",
+    "supportTitle": "Soutenir le projet",
+    "supportText": "Si vous aimez VibeNVR, pensez à lui donner une étoile sur GitHub ou à m'offrir un café ! Votre soutien permet de continuer les mises à jour.",
+    "starOnGithub": "Étoile sur GitHub",
+    "buyMeCoffee": "M'offrir un café",
+    "publicTelemetry": "Télémétrie publique",
+    "creditsTitle": "Crédits techniques & Stack",
+    "sectionBackend": "Backend",
+    "sectionFrontend": "Frontend",
+    "sectionEngine": "Moteur",
+    "sectionAuthor": "Auteur"
+  },
+  "login": {
+    "welcomeBack": "Bon retour",
+    "credentials": "Entrez vos identifiants pour accéder à VibeNVR",
+    "enter2fa": "Entrez votre code 2FA",
+    "username": "Nom d'utilisateur",
+    "usernamePlaceholder": "admin",
+    "password": "Mot de passe",
+    "recoveryCode": "Code de récupération",
+    "recoveryCodePlaceholder": "Entrez le code de récupération",
+    "recoveryCodeHint": "Entrez l'un de vos codes de récupération à 8 caractères.",
+    "twoFactorCode": "Code d'authentification à deux facteurs",
+    "twoFactorHint": "Ouvrez votre application d'authentification et entrez le code à 6 chiffres.",
+    "trustDevice": "Faire confiance à cet appareil (ignorer le 2FA la prochaine fois)",
+    "deviceName": "Nom de l'appareil",
+    "deviceNamePlaceholder": "ex. Mon MacBook",
+    "verifyAndLogin": "Vérifier et se connecter",
+    "signIn": "Se connecter",
+    "useAuthApp": "Utiliser l'application d'authentification",
+    "lostDevice": "Appareil perdu ? Utiliser le code de récupération",
+    "backToLogin": "Retour à la connexion",
+    "secureSystem": "Système de vidéosurveillance sécurisé",
+    "invalidCredentials": "Nom d'utilisateur ou mot de passe incorrect",
+    "loginFailed": "Connexion échouée. Vérifiez votre connexion."
+  },
   "common": {
     "confirm": "Confirmer",
     "cancel": "Annuler",
@@ -13,6 +54,16 @@
     "deleteSelected": "Supprimer la sélection"
   },
   "cameras": {
+    "card": {
+      "unknownLocation": "Emplacement inconnu",
+      "lastSeen": "Vu pour la dernière fois : {{date}}",
+      "edgeDetection": "Détection de mouvement côté caméra",
+      "exportSuccess": "Paramètres de la caméra exportés avec succès",
+      "exportFailed": "Échec de l'export des paramètres",
+      "exportTitle": "Exporter les paramètres de la caméra",
+      "editTitle": "Modifier la caméra",
+      "deleteTitle": "Supprimer la caméra"
+    },
     "bulkBar": {
       "title": "Actions groupées",
       "selected": "{{count}} caméra(s) sélectionnée(s)"

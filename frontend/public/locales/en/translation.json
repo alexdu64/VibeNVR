@@ -1,6 +1,47 @@
 {
   "welcome": "Welcome",
   "settings": "Settings",
+  "about": {
+    "logoAlt": "VibeNVR Logo",
+    "tagline": "The Modern, Performant, and Beautiful Network Video Recorder",
+    "betaSuffix": "Beta",
+    "openSource": "Open Source",
+    "whyTitle": "Why VibeNVR?",
+    "supportTitle": "Support the Project",
+    "supportText": "If you love VibeNVR, consider giving it a Star on GitHub or buying me a coffee! Your support keeps the updates coming.",
+    "starOnGithub": "Star on GitHub",
+    "buyMeCoffee": "Buy me a coffee",
+    "publicTelemetry": "Public Telemetry",
+    "creditsTitle": "Technical Credits & Stack",
+    "sectionBackend": "Backend",
+    "sectionFrontend": "Frontend",
+    "sectionEngine": "Engine",
+    "sectionAuthor": "Author"
+  },
+  "login": {
+    "welcomeBack": "Welcome Back",
+    "credentials": "Enter your credentials to access VibeNVR",
+    "enter2fa": "Enter your 2FA code",
+    "username": "Username",
+    "usernamePlaceholder": "admin",
+    "password": "Password",
+    "recoveryCode": "Recovery Code",
+    "recoveryCodePlaceholder": "Enter recovery code",
+    "recoveryCodeHint": "Enter one of your 8-character recovery codes.",
+    "twoFactorCode": "Two-Factor Authenticator Code",
+    "twoFactorHint": "Open your authenticator app and enter the 6-digit code.",
+    "trustDevice": "Trust this device (skip 2FA next time)",
+    "deviceName": "Device Name",
+    "deviceNamePlaceholder": "e.g. My MacBook",
+    "verifyAndLogin": "Verify & Login",
+    "signIn": "Sign In",
+    "useAuthApp": "Use Authenticator App Instead",
+    "lostDevice": "Lost device? Use Recovery Code",
+    "backToLogin": "Back to Login",
+    "secureSystem": "Secure Video Surveillance System",
+    "invalidCredentials": "Invalid username or password",
+    "loginFailed": "Login failed. Please check your connection."
+  },
   "common": {
     "confirm": "Confirm",
     "cancel": "Cancel",
@@ -13,6 +54,16 @@
     "deleteSelected": "Delete Selected"
   },
   "cameras": {
+    "card": {
+      "unknownLocation": "Unknown Location",
+      "lastSeen": "Last seen: {{date}}",
+      "edgeDetection": "Camera-side Motion Detection",
+      "exportSuccess": "Camera settings exported successfully",
+      "exportFailed": "Failed to export settings",
+      "exportTitle": "Export Camera Settings",
+      "editTitle": "Edit Camera",
+      "deleteTitle": "Delete Camera"
+    },
     "bulkBar": {
       "title": "Bulk Actions",
       "selected": "{{count}} Camera(s) selected"
