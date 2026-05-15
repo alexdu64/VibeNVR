@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { Lock, User } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '../components/ui/Button';
 
 export const Login = () => {
+    const { t } = useTranslation();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [totpCode, setTotpCode] = useState('');
@@ -96,13 +98,13 @@ export const Login = () => {
                 const errData = await res.json();
                 if (errData.detail === '2FA_REQUIRED') {
                     setRequire2FA(true);
-                    setError(''); // Clear previous errors
+                    setError('');
                     return;
                 }
-                setError('Invalid username or password');
+                setError(t('login.invalidCredentials'));
             }
         } catch (err) {
-            setError('Login failed. Please check your connection.');
+            setError(t('login.loginFailed'));
         }
     };
 
@@ -117,9 +119,9 @@ export const Login = () => {
                         className="h-32 sm:h-40 w-auto"
                     />
                     <div className="text-center">
-                        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900">Welcome Back</h1>
+                        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900">{t('login.welcomeBack')}</h1>
                         <p className="text-gray-500 text-sm sm:text-base mt-1">
-                            {require2FA ? 'Enter your 2FA code' : 'Enter your credentials to access VibeNVR'}
+                            {require2FA ? t('login.enter2fa') : t('login.credentials')}
                         </p>
                     </div>
                 </div>
@@ -128,13 +130,13 @@ export const Login = () => {
                     {!require2FA ? (
                         <>
                             <div className="space-y-2">
-                                <label className="text-sm font-medium">Username</label>
+                                <label className="text-sm font-medium">{t('login.username')}</label>
                                 <div className="relative">
                                     <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                                     <input
                                         type="text"
                                         className="w-full pl-9 pr-3 py-2.5 bg-background border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none transition-all"
-                                        placeholder="admin"
+                                        placeholder={t('login.usernamePlaceholder')}
                                         value={username}
                                         onChange={(e) => setUsername(e.target.value)}
                                         required
@@ -143,7 +145,7 @@ export const Login = () => {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-sm font-medium">Password</label>
+                                <label className="text-sm font-medium">{t('login.password')}</label>
                                 <div className="relative">
                                     <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                                     <input
@@ -161,23 +163,23 @@ export const Login = () => {
                         <div className="space-y-4 animate-in fade-in slide-in-from-right-4 duration-300">
                             {useRecoveryCode ? (
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-center block">Recovery Code</label>
+                                    <label className="text-sm font-medium text-center block">{t('login.recoveryCode')}</label>
                                     <input
                                         type="text"
                                         className="w-full text-center text-xl tracking-wider font-mono py-3 bg-background border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none transition-all"
-                                        placeholder="Enter recovery code"
+                                        placeholder={t('login.recoveryCodePlaceholder')}
                                         value={recoveryCode}
                                         onChange={(e) => setRecoveryCode(e.target.value)}
                                         autoFocus
                                         required
                                     />
                                     <p className="text-xs text-center text-muted-foreground">
-                                        Enter one of your 8-character recovery codes.
+                                        {t('login.recoveryCodeHint')}
                                     </p>
                                 </div>
                             ) : (
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-center block">Two-Factor Authenticator Code</label>
+                                    <label className="text-sm font-medium text-center block">{t('login.twoFactorCode')}</label>
                                     <input
                                         type="text"
                                         className="w-full text-center text-2xl tracking-[0.5em] font-mono py-3 bg-background border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none transition-all"
@@ -189,7 +191,7 @@ export const Login = () => {
                                         required
                                     />
                                     <p className="text-xs text-center text-muted-foreground">
-                                        Open your authenticator app and enter the 6-digit code.
+                                        {t('login.twoFactorHint')}
                                     </p>
                                 </div>
                             )}
@@ -203,17 +205,17 @@ export const Login = () => {
                                         onChange={(e) => setTrustDevice(e.target.checked)}
                                     />
                                     <label htmlFor="trust-device" className="text-sm text-muted-foreground select-none cursor-pointer">
-                                        Trust this device (skip 2FA next time)
+                                        {t('login.trustDevice')}
                                     </label>
                                 </div>
 
                                 {trustDevice && (
                                     <div className="animate-in fade-in slide-in-from-top-2 duration-200">
-                                        <label className="text-xs font-medium text-muted-foreground mb-1 block">Device Name</label>
+                                        <label className="text-xs font-medium text-muted-foreground mb-1 block">{t('login.deviceName')}</label>
                                         <input
                                             type="text"
                                             className="w-full px-3 py-2 bg-background border border-border rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none"
-                                            placeholder="e.g. My MacBook"
+                                            placeholder={t('login.deviceNamePlaceholder')}
                                             value={deviceName}
                                             onChange={(e) => setDeviceName(e.target.value)}
                                         />
@@ -227,7 +229,7 @@ export const Login = () => {
 
                     <div className="space-y-3">
                         <Button className="w-full py-2.5" type="submit">
-                            {require2FA ? 'Verify & Login' : 'Sign In'}
+                            {require2FA ? t('login.verifyAndLogin') : t('login.signIn')}
                         </Button>
 
                         {require2FA && (
@@ -242,14 +244,14 @@ export const Login = () => {
                                     }}
                                     className="w-full text-sm text-primary hover:text-primary/80 transition-colors"
                                 >
-                                    {useRecoveryCode ? "Use Authenticator App Instead" : "Lost device? Use Recovery Code"}
+                                    {useRecoveryCode ? t('login.useAuthApp') : t('login.lostDevice')}
                                 </button>
                                 <button
                                     type="button"
                                     onClick={() => { setRequire2FA(false); setTotpCode(''); setRecoveryCode(''); setError(''); setUseRecoveryCode(false); }}
                                     className="w-full text-sm text-muted-foreground hover:text-primary transition-colors"
                                 >
-                                    Back to Login
+                                    {t('login.backToLogin')}
                                 </button>
                             </div>
                         )}
@@ -257,7 +259,7 @@ export const Login = () => {
                 </form>
 
                 <p className="text-center text-xs text-muted-foreground">
-                    Secure Video Surveillance System
+                    {t('login.secureSystem')}
                 </p>
             </div>
         </div>
