@@ -1,15 +1,17 @@
 import React from 'react';
-import { ExternalLink, Github, Heart, Video, Star, LayoutDashboard } from 'lucide-react';
+import { Github, Heart, Video, Star, LayoutDashboard } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import packageJson from '../../package.json';
 
 export const About = () => {
+    const { t } = useTranslation();
     return (
         <div className="max-w-4xl mx-auto space-y-8 animate-fade-in pb-12">
             <div className="text-center space-y-4 mb-12">
                 <div className="flex justify-center mb-6">
                     <img
                         src="/vibe_logo_variant_2.png"
-                        alt="VibeNVR Logo"
+                        alt={t('about.logoAlt')}
                         className="h-32 w-auto drop-shadow-xl hover:scale-105 transition-transform duration-500"
                     />
                 </div>
@@ -17,14 +19,14 @@ export const About = () => {
                     VibeNVR
                 </h1>
                 <p className="text-xl text-muted-foreground font-light max-w-2xl mx-auto">
-                    The Modern, Performant, and Beautiful Network Video Recorder
+                    {t('about.tagline')}
                 </p>
                 <div className="flex justify-center space-x-2">
                     <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-semibold uppercase tracking-wider">
-                        v{packageJson.version} Beta
+                        v{packageJson.version} {t('about.betaSuffix')}
                     </span>
                     <span className="px-3 py-1 bg-green-500/10 text-green-500 rounded-full text-xs font-semibold uppercase tracking-wider">
-                        Open Source
+                        {t('about.openSource')}
                     </span>
                 </div>
             </div>
@@ -34,7 +36,7 @@ export const About = () => {
                     <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                         <Video className="w-6 h-6 text-primary" />
                     </div>
-                    <h2 className="text-2xl font-bold mb-4">Why VibeNVR?</h2>
+                    <h2 className="text-2xl font-bold mb-4">{t('about.whyTitle')}</h2>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                         I built VibeNVR because existing open-source solutions like MotionEye felt outdated, clunky, and hard to integrate with modern home automation stacks.
                     </p>
@@ -54,9 +56,9 @@ export const About = () => {
                     </div>
 
                     <div>
-                        <h2 className="text-2xl font-bold mb-2">Support the Project</h2>
+                        <h2 className="text-2xl font-bold mb-2">{t('about.supportTitle')}</h2>
                         <p className="text-muted-foreground mb-6">
-                            If you love VibeNVR, consider giving it a Star on GitHub or buying me a coffee! Your support keeps the updates coming.
+                            {t('about.supportText')}
                         </p>
 
                         <div className="flex flex-col gap-4 justify-center items-center">
@@ -67,7 +69,7 @@ export const About = () => {
                                 className="inline-flex items-center justify-center space-x-2 bg-gray-900 text-white px-6 py-3 rounded-full font-bold hover:bg-gray-800 hover:scale-105 hover:shadow-xl transition-all duration-300 w-64"
                             >
                                 <Github className="w-5 h-5" />
-                                <span>Star on GitHub</span>
+                                <span>{t('about.starOnGithub')}</span>
                             </a>
                             <a
                                 href="https://www.buymeacoffee.com/spupuz"
@@ -77,10 +79,10 @@ export const About = () => {
                             >
                                 <img
                                     src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg"
-                                    alt="Buy me a coffee"
+                                    alt={t('about.buyMeCoffee')}
                                     className="w-5 h-5"
                                 />
-                                <span>Buy me a coffee</span>
+                                <span>{t('about.buyMeCoffee')}</span>
                             </a>
                             <a
                                 href="https://vibenvr-telemetry.spupuz.workers.dev/"
@@ -89,7 +91,7 @@ export const About = () => {
                                 className="inline-flex items-center justify-center space-x-2 bg-blue-500 text-white px-6 py-3 rounded-full font-bold hover:bg-blue-600 hover:scale-105 hover:shadow-xl transition-all duration-300 w-64"
                             >
                                 <LayoutDashboard className="w-5 h-5" />
-                                <span>Public Telemetry</span>
+                                <span>{t('about.publicTelemetry')}</span>
                             </a>
                         </div>
                     </div>
@@ -97,28 +99,28 @@ export const About = () => {
             </div>
 
             <div className="bg-card border border-border rounded-xl p-6">
-                <h3 className="text-lg font-semibold mb-4 border-b border-border pb-2">Technical Credits & Stack</h3>
+                <h3 className="text-lg font-semibold mb-4 border-b border-border pb-2">{t('about.creditsTitle')}</h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-muted-foreground">
                     <div className="flex flex-col space-y-1">
-                        <span className="font-medium text-foreground">Backend</span>
+                        <span className="font-medium text-foreground">{t('about.sectionBackend')}</span>
                         <span>Python FastAPI</span>
                         <span>SQLAlchemy</span>
                         <span>PostgreSQL</span>
                     </div>
                     <div className="flex flex-col space-y-1">
-                        <span className="font-medium text-foreground">Frontend</span>
+                        <span className="font-medium text-foreground">{t('about.sectionFrontend')}</span>
                         <span>React + Vite</span>
                         <span>TailwindCSS</span>
                         <span>Lucide Icons</span>
                     </div>
                     <div className="flex flex-col space-y-1">
-                        <span className="font-medium text-foreground">Loop</span>
+                        <span className="font-medium text-foreground">{t('about.sectionEngine')}</span>
                         <span>OpenCV</span>
                         <span>FFmpeg</span>
                         <span>Docker</span>
                     </div>
                     <div className="flex flex-col space-y-1">
-                        <span className="font-medium text-foreground">Author</span>
+                        <span className="font-medium text-foreground">{t('about.sectionAuthor')}</span>
                         <span>Alessandro Belloni</span>
                         <a href="https://github.com/spupuz" className="flex items-center space-x-1 text-primary hover:underline">
                             <Github className="w-3 h-3" />
