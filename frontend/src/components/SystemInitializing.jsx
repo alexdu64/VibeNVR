@@ -1,8 +1,10 @@
 import React from 'react';
 import { Loader2, ShieldCheck, RefreshCw, Database, Cpu, AlertCircle, CheckCircle2, RotateCcw, Server } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
 
 export const SystemInitializing = () => {
+    const { t } = useTranslation();
     const { healthDetails, checkBackendHealth } = useAuth();
     const [retrying, setRetrying] = React.useState(false);
 
@@ -39,7 +41,7 @@ export const SystemInitializing = () => {
                         <Loader2 className="w-4 h-4 animate-spin text-muted-foreground" />
                     )}
                     <span className={`text-xs font-semibold ${isOk ? 'text-green-500' : isError ? 'text-destructive' : 'text-muted-foreground'}`}>
-                        {isOk ? 'READY' : isError ? 'ERROR' : 'PENDING'}
+                        {isOk ? t('system.statusReady') : isError ? t('system.statusError') : t('system.statusPending')}
                     </span>
                 </div>
             </div>
@@ -59,9 +61,9 @@ export const SystemInitializing = () => {
                 </div>
 
                 <div className="space-y-3">
-                    <h1 className="text-2xl font-bold tracking-tight">VibeNVR is starting up</h1>
+                    <h1 className="text-2xl font-bold tracking-tight">{t('system.startingUp')}</h1>
                     <p className="text-muted-foreground leading-relaxed">
-                        We are waiting for all system components to initialize. This usually takes less than a minute.
+                        {t('system.waitingMessage')}
                     </p>
                 </div>
 
@@ -69,11 +71,11 @@ export const SystemInitializing = () => {
                     <div className="flex items-center justify-between px-1">
                         <div className="flex items-center gap-3 text-sm font-semibold">
                             <Loader2 className={`w-4 h-4 animate-spin ${retrying ? 'text-primary' : 'text-muted-foreground opacity-50'}`} />
-                            <span>System Status</span>
+                            <span>{t('system.systemStatus')}</span>
                         </div>
                         {healthDetails?.status === 'error' && (
                             <span className="text-[10px] bg-destructive/10 text-destructive px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">
-                                Recovery in progress
+                                {t('system.recoveryInProgress')}
                             </span>
                         )}
                     </div>
@@ -91,7 +93,7 @@ export const SystemInitializing = () => {
                             className="w-full flex items-center justify-center gap-2 py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold text-sm hover:opacity-90 transition-all disabled:opacity-50 shadow-lg shadow-primary/20 group"
                         >
                             <RotateCcw className={`w-4 h-4 ${retrying ? 'animate-spin' : 'group-hover:-rotate-180 transition-transform duration-500'}`} />
-                            {retrying ? 'Retrying...' : 'Retry Now'}
+                            {retrying ? t('system.retrying') : t('system.retryNow')}
                         </button>
                     </div>
                 </div>
@@ -99,7 +101,7 @@ export const SystemInitializing = () => {
                 <div className="pt-4 flex flex-col items-center gap-2">
                     <div className="flex items-center gap-2 text-xs text-muted-foreground uppercase tracking-wider font-semibold">
                         <RefreshCw className="w-3 h-3" />
-                        Auto-refresh active
+                        {t('system.autoRefreshActive')}
                     </div>
                 </div>
             </div>

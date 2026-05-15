@@ -1,0 +1,16 @@
+{
+  "welcome": "Bienvenue",
+  "settings": "Paramètres",
+  "system": {
+    "startingUp": "VibeNVR démarre",
+    "waitingMessage": "Nous attendons l'initialisation de tous les composants système. Cela prend généralement moins d'une minute.",
+    "systemStatus": "État du système",
+    "recoveryInProgress": "Récupération en cours",
+    "retrying": "Nouvelle tentative...",
+    "retryNow": "Réessayer",
+    "autoRefreshActive": "Actualisation automatique active",
+    "statusReady": "PRÊT",
+    "statusError": "ERREUR",
+    "statusPending": "EN ATTENTE"
+  }
+}
