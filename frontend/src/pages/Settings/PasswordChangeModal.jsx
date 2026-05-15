@@ -1,5 +1,6 @@
 import React from 'react';
 import { Key, X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '../../components/ui/Button';
 import { InputField } from '../../components/ui/FormControls';
 
@@ -11,6 +12,7 @@ export const PasswordChangeModal = ({
     setPwdForm,
     handlePasswordUpdate
 }) => {
+    const { t } = useTranslation();
     if (!isOpen) return null;
 
     return (
@@ -19,7 +21,9 @@ export const PasswordChangeModal = ({
                 <div className="flex justify-between items-center mb-4 border-b border-border pb-4">
                     <h3 className="text-xl font-bold flex items-center gap-2">
                         <Key className="w-5 h-5 text-primary" />
-                        {pwdTargetUser ? `Change Password: ${pwdTargetUser.username}` : 'Change Password'}
+                        {pwdTargetUser
+                            ? t('settings.pwd.titleUser', { username: pwdTargetUser.username })
+                            : t('settings.pwd.title')}
                     </h3>
                     <button
                         onClick={onClose}
@@ -33,7 +37,7 @@ export const PasswordChangeModal = ({
                     {/* Only show Old Password if changing own password */}
                     {!pwdTargetUser && (
                         <InputField
-                            label="Current Password"
+                            label={t('settings.pwd.currentPassword')}
                             type="password"
                             value={pwdForm.old_password}
                             onChange={(val) => setPwdForm({ ...pwdForm, old_password: val })}
@@ -42,7 +46,7 @@ export const PasswordChangeModal = ({
                     )}
 
                     <InputField
-                        label="New Password"
+                        label={t('settings.pwd.newPassword')}
                         type="password"
                         value={pwdForm.new_password}
                         onChange={(val) => setPwdForm({ ...pwdForm, new_password: val })}
@@ -50,7 +54,7 @@ export const PasswordChangeModal = ({
                     />
 
                     <InputField
-                        label="Confirm New Password"
+                        label={t('settings.pwd.confirmNewPassword')}
                         type="password"
                         value={pwdForm.confirm_password}
                         onChange={(val) => setPwdForm({ ...pwdForm, confirm_password: val })}
@@ -63,10 +67,10 @@ export const PasswordChangeModal = ({
                             variant="outline"
                             onClick={onClose}
                         >
-                            Cancel
+                            {t('common.cancel')}
                         </Button>
                         <Button type="submit">
-                            Update Password
+                            {t('settings.pwd.updatePassword')}
                         </Button>
                     </div>
                 </form>
