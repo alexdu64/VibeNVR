@@ -1,11 +1,13 @@
 import React from 'react';
 import { Camera, MapPin, HardDrive, Download, Edit, Trash2, Activity, Clock } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Toggle } from '../ui/FormControls';
 import { Button } from '../ui/Button';
 import { useAuth } from '../../contexts/AuthContext';
 import { useToast } from '../../contexts/ToastContext';
 
 export const CameraCard = ({ camera, onDelete, onEdit, onToggleActive, isSelected, onSelect }) => {
+    const { t } = useTranslation();
     const { user, token } = useAuth();
     const { showToast } = useToast();
 
@@ -70,7 +72,7 @@ export const CameraCard = ({ camera, onDelete, onEdit, onToggleActive, isSelecte
                             </div>
 
                             {camera.detect_engine === 'ONVIF Edge' && (
-                                <div className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border bg-indigo-500/10 text-indigo-600 border-indigo-500/20" title="Camera-side Motion Detection">
+                                <div className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border bg-indigo-500/10 text-indigo-600 border-indigo-500/20" title={t('cameras.card.edgeDetection')}>
                                     <span>EDGE</span>
                                 </div>
                             )}
@@ -83,13 +85,13 @@ export const CameraCard = ({ camera, onDelete, onEdit, onToggleActive, isSelecte
                     </h3>
                     <div className="flex items-center text-xs text-muted-foreground mt-1">
                         <MapPin className="w-3 h-3 mr-1 flex-shrink-0" />
-                        <span className="truncate" title={camera.location}>{camera.location || 'Unknown Location'}</span>
+                        <span className="truncate" title={camera.location}>{camera.location || t('cameras.card.unknownLocation')}</span>
                     </div>
 
                     {camera.status !== 'CONNECTED' && camera.last_seen && (
                         <div className="flex items-center text-[10px] text-muted-foreground mt-1 italic">
                             <Clock className="w-2.5 h-2.5 mr-1" />
-                            <span>Last seen: {new Date(camera.last_seen).toLocaleString()}</span>
+                            <span>{t('cameras.card.lastSeen', { date: new Date(camera.last_seen).toLocaleString() })}</span>
                         </div>
                     )}
                     {camera.storage_profile && (
@@ -148,16 +150,16 @@ export const CameraCard = ({ camera, onDelete, onEdit, onToggleActive, isSelecte
                                         a.click();
                                         window.URL.revokeObjectURL(url);
                                         document.body.removeChild(a);
-                                        showToast("Camera settings exported successfully", "success");
+                                        showToast(t('cameras.card.exportSuccess'), "success");
                                     } else {
-                                        showToast("Failed to export settings", "error");
+                                        showToast(t('cameras.card.exportFailed'), "error");
                                     }
                                 } catch (e) {
                                     showToast("Export error: " + e.message, "error");
                                 }
                             }}
                             className="p-2 text-green-600 hover:bg-green-100 dark:hover:bg-green-900/40"
-                            title="Export Camera Settings"
+                            title={t('cameras.card.exportTitle')}
                         >
                         </Button>
                         <Button
@@ -165,7 +167,7 @@ export const CameraCard = ({ camera, onDelete, onEdit, onToggleActive, isSelecte
                             size="sm"
                             onClick={() => onEdit(camera)}
                             className="p-2 text-blue-500 hover:bg-blue-100 dark:hover:bg-blue-900/40"
-                            title="Edit Camera"
+                            title={t('cameras.card.editTitle')}
                         >
                             <Edit className="w-5 h-5" />
                         </Button>
@@ -174,7 +176,7 @@ export const CameraCard = ({ camera, onDelete, onEdit, onToggleActive, isSelecte
                             size="sm"
                             onClick={() => onDelete(camera.id)}
                             className="p-2 text-red-500 hover:bg-red-100 dark:hover:bg-red-900/40"
-                            title="Delete Camera"
+                            title={t('cameras.card.deleteTitle')}
                         >
                             <Trash2 className="w-5 h-5" />
                         </Button>
