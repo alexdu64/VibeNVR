@@ -1,5 +1,6 @@
 import React from 'react';
 import { X, HardDrive, Trash2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 /**
  * Floating Action Bar for Bulk Event Operations
@@ -20,6 +21,7 @@ export const BulkActionBar = ({
     isBulkDeleting,
     user
 }) => {
+    const { t } = useTranslation();
     if (selectedIds.size === 0 || user?.role !== 'admin') return null;
 
     return (
@@ -40,12 +42,12 @@ export const BulkActionBar = ({
                         {selectedIds.size === filteredEvents.length ? (
                             <>
                                 <X className="w-3.5 h-3.5" />
-                                <span className="text-[10px] sm:text-sm font-semibold whitespace-nowrap">Deselect All</span>
+                                <span className="text-[10px] sm:text-sm font-semibold whitespace-nowrap">{t('common.deselectAll')}</span>
                             </>
                         ) : (
                             <>
                                 <HardDrive className="w-3.5 h-3.5 opacity-70" />
-                                <span className="text-[10px] sm:text-sm font-semibold whitespace-nowrap">Select All</span>
+                                <span className="text-[10px] sm:text-sm font-semibold whitespace-nowrap">{t('common.selectAll')}</span>
                             </>
                         )}
                     </button>
@@ -56,7 +58,7 @@ export const BulkActionBar = ({
                         className="p-2 sm:px-3 sm:py-1.5 hover:bg-white/10 rounded-xl transition-colors"
                     >
                         <X className="w-4 h-4 sm:hidden" />
-                        <span className="hidden sm:inline text-sm font-semibold">Cancel</span>
+                        <span className="hidden sm:inline text-sm font-semibold">{t('common.cancel')}</span>
                     </button>
                     
                     {user?.role === 'admin' && (
@@ -70,7 +72,7 @@ export const BulkActionBar = ({
                             ) : (
                                 <Trash2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                             )}
-                            <span className="whitespace-nowrap">Delete {selectedIds.size}</span>
+                            <span className="whitespace-nowrap">{t('timeline.bulkBar.delete', { count: selectedIds.size })}</span>
                         </button>
                     )}
                 </div>
