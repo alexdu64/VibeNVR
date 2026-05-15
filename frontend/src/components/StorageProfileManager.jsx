@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { HardDrive, Plus, Trash2, Edit, Save, X, Info } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
 import { useToast } from '../contexts/ToastContext';
 import { Button } from './ui/Button';
@@ -7,6 +8,7 @@ import { InputField } from './ui/FormControls';
 import { ConfirmModal } from './ui/ConfirmModal';
 
 export const StorageProfileManager = () => {
+    const { t } = useTranslation();
     const { token } = useAuth();
     const { showToast } = useToast();
     const [profiles, setProfiles] = useState([]);
@@ -43,7 +45,7 @@ export const StorageProfileManager = () => {
     const handleSave = async (e) => {
         e.preventDefault();
         try {
-            const url = editingId 
+            const url = editingId
                 ? `/api/storage/profiles/${editingId}`
                 : '/api/storage/profiles';
             const method = editingId ? 'PUT' : 'POST';
@@ -58,7 +60,7 @@ export const StorageProfileManager = () => {
             });
 
             if (res.ok) {
-                showToast(`Profile ${editingId ? 'updated' : 'created'} successfully`, 'success');
+                showToast(t(editingId ? 'storage.profileUpdated' : 'storage.profileCreated'), 'success');
                 setIsCreating(false);
                 setEditingId(null);
                 setNewProfile({ name: '', path: '', description: '', max_size_gb: 0 });
@@ -75,8 +77,8 @@ export const StorageProfileManager = () => {
     const handleDelete = (id) => {
         setConfirmConfig({
             isOpen: true,
-            title: 'Delete Storage Profile',
-            message: 'Are you sure you want to delete this profile? Cameras using this profile will revert to the default storage path.',
+            title: t('storage.deleteTitle'),
+            message: t('storage.deleteMessage'),
             onConfirm: async () => {
                 try {
                     const res = await fetch(`/api/storage/profiles/${id}`, {
@@ -84,11 +86,11 @@ export const StorageProfileManager = () => {
                         headers: { Authorization: `Bearer ${token}` }
                     });
                     if (res.ok) {
-                        showToast('Profile deleted', 'success');
+                        showToast(t('storage.profileDeleted'), 'success');
                         fetchProfiles();
                     }
                 } catch (err) {
-                    showToast('Delete failed', 'error');
+                    showToast(t('storage.deleteFailed'), 'error');
                 }
                 setConfirmConfig({ isOpen: false });
             },
@@ -110,13 +112,13 @@ export const StorageProfileManager = () => {
                         <HardDrive className="w-5 h-5" />
                     </div>
                     <div className="min-w-0 flex-1">
-                        <h4 className="font-semibold text-sm">Custom Storage Profiles</h4>
-                        <p className="text-xs text-muted-foreground italic leading-tight break-words">Map recordings to different host volumes (e.g., SSD for motion, NAS for long-term storage).</p>
+                        <h4 className="font-semibold text-sm">{t('storage.title')}</h4>
+                        <p className="text-xs text-muted-foreground italic leading-tight break-words">{t('storage.subtitle')}</p>
                     </div>
                 </div>
-                <Button 
-                    variant={isCreating ? "ghost" : "default"} 
-                    size="sm" 
+                <Button
+                    variant={isCreating ? "ghost" : "default"}
+                    size="sm"
                     onClick={() => {
                         setIsCreating(!isCreating);
                         if (!isCreating) {
@@ -127,7 +129,7 @@ export const StorageProfileManager = () => {
                     className="flex items-center gap-1.5 w-full md:w-auto justify-center md:justify-start shrink-0"
                 >
                     {isCreating ? <X className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-                    {isCreating ? 'Cancel' : 'Add Profile'}
+                    {isCreating ? t('common.cancel') : t('storage.addProfile')}
                 </Button>
             </div>
 
@@ -135,39 +137,39 @@ export const StorageProfileManager = () => {
                 <div className="p-4 bg-muted/20 border border-border/50 rounded-xl animate-in fade-in slide-in-from-top-2 duration-300">
                     <form onSubmit={handleSave} className="space-y-4">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <InputField 
-                                label="Profile Name"
+                            <InputField
+                                label={t('storage.profileName')}
                                 value={newProfile.name}
                                 onChange={(val) => setNewProfile({...newProfile, name: val})}
-                                placeholder="e.g. SSD Recordings"
+                                placeholder={t('storage.profileNamePlaceholder')}
                                 required
                             />
-                            <InputField 
-                                label="Absolute Path"
+                            <InputField
+                                label={t('storage.absolutePath')}
                                 value={newProfile.path}
                                 onChange={(val) => setNewProfile({...newProfile, path: val})}
-                                placeholder="e.g. /storage/ssd"
-                                help="Container path. This path must be mounted in docker-compose (e.g., VIBENVR_STORAGE_SSD: /storage/ssd)."
+                                placeholder={t('storage.absolutePathPlaceholder')}
+                                help={t('storage.absolutePathHelp')}
                                 required
                             />
-                            <InputField 
-                                label="Description"
+                            <InputField
+                                label={t('storage.descriptionLabel')}
                                 value={newProfile.description}
                                 onChange={(val) => setNewProfile({...newProfile, description: val})}
-                                placeholder="Optional description"
+                                placeholder={t('storage.descriptionPlaceholder')}
                             />
-                            <InputField 
-                                label="Max Size (GB)"
+                            <InputField
+                                label={t('storage.maxSize')}
                                 type="number"
                                 value={newProfile.max_size_gb}
                                 onChange={(val) => setNewProfile({...newProfile, max_size_gb: parseFloat(val) || 0})}
-                                help="Reserved for future use (quota per profile). Set to 0 for unlimited."
+                                help={t('storage.maxSizeHelp')}
                             />
                         </div>
                         <div className="flex justify-end gap-2">
                             <Button type="submit" size="sm" className="flex items-center gap-1.5">
                                 <Save className="w-4 h-4" />
-                                {editingId ? 'Update Profile' : 'Create Profile'}
+                                {editingId ? t('storage.updateProfile') : t('storage.createProfile')}
                             </Button>
                         </div>
                     </form>
@@ -196,17 +198,17 @@ export const StorageProfileManager = () => {
                         </div>
                     </div>
                 ))}
-                
+
                 {profiles.length === 0 && !loading && !isCreating && (
                     <div className="text-center py-8 bg-muted/5 border border-dashed border-border rounded-xl">
                         <Info className="w-8 h-8 mx-auto text-muted-foreground/30 mb-2" />
-                        <p className="text-sm text-muted-foreground">No custom storage profiles configured.</p>
-                        <p className="text-[10px] text-muted-foreground/60 mt-1">Recordings will use the default path defined in the engine.</p>
+                        <p className="text-sm text-muted-foreground">{t('storage.noneConfigured')}</p>
+                        <p className="text-[10px] text-muted-foreground/60 mt-1">{t('storage.defaultPath')}</p>
                     </div>
                 )}
             </div>
 
-            <ConfirmModal 
+            <ConfirmModal
                 {...confirmConfig}
             />
         </div>
