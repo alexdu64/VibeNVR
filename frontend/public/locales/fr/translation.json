@@ -3,7 +3,40 @@
   "settings": "Paramètres",
   "common": {
     "confirm": "Confirmer",
-    "cancel": "Annuler"
+    "cancel": "Annuler",
+    "clear": "Effacer",
+    "selectAll": "Tout sélectionner",
+    "reset": "Réinitialiser",
+    "deleteSelected": "Supprimer la sélection"
+  },
+  "cameras": {
+    "bulkBar": {
+      "title": "Actions groupées",
+      "selected": "{{count}} caméra(s) sélectionnée(s)"
+    },
+    "copySettings": {
+      "title": "Copier les paramètres",
+      "subtitle": "Sélectionnez les caméras cibles et les catégories de paramètres à écraser.",
+      "warning": "Attention : cela remplacera la configuration des caméras sélectionnées.",
+      "settingsCategories": "Catégories de paramètres",
+      "targetCameras": "Caméras cibles",
+      "noCamerasAvailable": "Aucune autre caméra disponible.",
+      "noLocation": "Aucun emplacement",
+      "copyTo": "Copier vers {{count}} caméra(s)"
+    }
+  },
+  "timeline": {
+    "filters": {
+      "allCameras": "Toutes les caméras",
+      "allMedia": "Tous les médias",
+      "videos": "Vidéos",
+      "snapshots": "Captures",
+      "allObjects": "Tous les objets",
+      "person": "Personne",
+      "vehicle": "Véhicule",
+      "dog": "Chien",
+      "cat": "Chat"
+    }
   },
   "nav": {
     "dashboard": "Tableau de bord",

@@ -3,7 +3,40 @@
   "settings": "Settings",
   "common": {
     "confirm": "Confirm",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "clear": "Clear",
+    "selectAll": "Select All",
+    "reset": "Reset",
+    "deleteSelected": "Delete Selected"
+  },
+  "cameras": {
+    "bulkBar": {
+      "title": "Bulk Actions",
+      "selected": "{{count}} Camera(s) selected"
+    },
+    "copySettings": {
+      "title": "Copy Settings",
+      "subtitle": "Select target cameras and settings categories to overwrite.",
+      "warning": "Warning: This will replace configuration for selected cameras.",
+      "settingsCategories": "Settings Categories",
+      "targetCameras": "Target Cameras",
+      "noCamerasAvailable": "No other cameras available.",
+      "noLocation": "No location",
+      "copyTo": "Copy to {{count}} Camera(s)"
+    }
+  },
+  "timeline": {
+    "filters": {
+      "allCameras": "All Cameras",
+      "allMedia": "All Media",
+      "videos": "Videos",
+      "snapshots": "Snapshots",
+      "allObjects": "All Objects",
+      "person": "Person",
+      "vehicle": "Vehicle",
+      "dog": "Dog",
+      "cat": "Cat"
+    }
   },
   "nav": {
     "dashboard": "Dashboard",
