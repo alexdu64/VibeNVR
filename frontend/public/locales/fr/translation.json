@@ -1,6 +1,37 @@
 {
   "welcome": "Bienvenue",
-  "settings": "Paramètres",
+  "settings": {
+    "pwd": {
+      "title": "Changer le mot de passe",
+      "titleUser": "Changer le mot de passe : {{username}}",
+      "currentPassword": "Mot de passe actuel",
+      "newPassword": "Nouveau mot de passe",
+      "confirmNewPassword": "Confirmer le nouveau mot de passe",
+      "updatePassword": "Mettre à jour le mot de passe"
+    },
+    "sync": {
+      "title": "Récupération terminée",
+      "errorOccurred": "Une erreur est survenue",
+      "recoveredRecordings": "Enregistrements récupérés",
+      "skipped": "Ignorés (déjà en base)",
+      "thumbnailsGenerated": "Miniatures générées",
+      "corruptedRemoved": "Fichiers corrompus supprimés",
+      "orphanedCleaned": "Fichiers de caméras supprimées nettoyés",
+      "count": "Nombre : {{n}}",
+      "freed": "Libéré : {{mb}} Mo"
+    },
+    "liveView": {
+      "title": "Disposition vue en direct",
+      "description": "Personnalisez l'affichage des caméras",
+      "gridColumns": "Colonnes de la grille",
+      "gridColumnsHelp": "Choisissez le nombre de colonnes dans la grille vue en direct",
+      "autoColumns": "Auto (selon le nombre de caméras)",
+      "column1": "1 Colonne",
+      "column2": "2 Colonnes",
+      "column3": "3 Colonnes",
+      "column4": "4 Colonnes"
+    }
+  },
   "about": {
     "logoAlt": "Logo VibeNVR",
     "tagline": "L'enregistreur vidéo réseau moderne, performant et élégant",
@@ -45,6 +76,7 @@
   "common": {
     "confirm": "Confirmer",
     "cancel": "Annuler",
+    "close": "Fermer",
     "clear": "Effacer",
     "selectAll": "Tout sélectionner",
     "deselectAll": "Tout désélectionner",

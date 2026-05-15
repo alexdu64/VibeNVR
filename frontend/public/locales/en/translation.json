@@ -1,6 +1,37 @@
 {
   "welcome": "Welcome",
-  "settings": "Settings",
+  "settings": {
+    "pwd": {
+      "title": "Change Password",
+      "titleUser": "Change Password: {{username}}",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmNewPassword": "Confirm New Password",
+      "updatePassword": "Update Password"
+    },
+    "sync": {
+      "title": "Recovery Complete",
+      "errorOccurred": "Error Occurred",
+      "recoveredRecordings": "Recovered Recordings",
+      "skipped": "Skipped (Already in DB)",
+      "thumbnailsGenerated": "Thumbnails Generated",
+      "corruptedRemoved": "Corrupted Files Removed",
+      "orphanedCleaned": "Deleted Camera Files Cleaned",
+      "count": "Count: {{n}}",
+      "freed": "Freed: {{mb}} MB"
+    },
+    "liveView": {
+      "title": "Live View Layout",
+      "description": "Customize how cameras are displayed",
+      "gridColumns": "Grid Columns",
+      "gridColumnsHelp": "Choose how many columns to display in the Live View grid",
+      "autoColumns": "Auto (Based on camera count)",
+      "column1": "1 Column",
+      "column2": "2 Columns",
+      "column3": "3 Columns",
+      "column4": "4 Columns"
+    }
+  },
   "about": {
     "logoAlt": "VibeNVR Logo",
     "tagline": "The Modern, Performant, and Beautiful Network Video Recorder",
@@ -45,6 +76,7 @@
   "common": {
     "confirm": "Confirm",
     "cancel": "Cancel",
+    "close": "Close",
     "clear": "Clear",
     "selectAll": "Select All",
     "deselectAll": "Deselect All",
