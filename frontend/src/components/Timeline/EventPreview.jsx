@@ -1,5 +1,6 @@
 import React from 'react';
 import { X, Download, Trash2, Play, HardDrive } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 /**
  * Event Preview and Video Player Component
@@ -39,12 +40,13 @@ export const EventPreview = ({
     user,
     isMobile = false
 }) => {
+    const { t } = useTranslation();
     if (!selectedEvent) {
         if (isMobile) return null;
         return (
             <div className="flex-1 flex flex-col items-center justify-center text-muted-foreground">
                 <Play className="w-12 h-12 mb-3 opacity-20" />
-                <p className="text-sm">Select an event to preview</p>
+                <p className="text-sm">{t('timeline.preview.selectEvent')}</p>
             </div>
         );
     }
@@ -70,7 +72,7 @@ export const EventPreview = ({
                                 onChange={(e) => setAutoplayNext(e.target.checked)}
                                 className="w-3.5 h-3.5 rounded border-gray-400 text-primary focus:ring-primary"
                             />
-                            <span className="text-[10px] font-bold text-foreground/80 uppercase tracking-tighter">Auto-next</span>
+                            <span className="text-[10px] font-bold text-foreground/80 uppercase tracking-tighter">{t('timeline.preview.autoNext')}</span>
                             {autoplayNext && (
                                 <select
                                     value={autoplayDirection}
@@ -83,8 +85,8 @@ export const EventPreview = ({
                                     className="ml-1 h-3.5 text-[9px] bg-transparent border-none focus:ring-0 cursor-pointer text-muted-foreground hover:text-foreground p-0 pr-1 pl-1"
                                     title="Playback Order"
                                 >
-                                    <option value="desc">Newest → Oldest</option>
-                                    <option value="asc">Oldest → Newest</option>
+                                    <option value="desc">{t('timeline.preview.newestFirst')}</option>
+                                    <option value="asc">{t('timeline.preview.oldestFirst')}</option>
                                 </select>
                             )}
                         </label>
@@ -138,7 +140,7 @@ export const EventPreview = ({
         <>
             <div className="flex justify-between items-start mb-3">
                 <div>
-                    <h3 className="text-lg font-bold">Event Details</h3>
+                    <h3 className="text-lg font-bold">{t('timeline.preview.eventDetails')}</h3>
                     <p className="text-xs text-muted-foreground">
                         {getCameraName(selectedEvent.camera_id)} • {new Date(selectedEvent.timestamp_start).toLocaleString()}
                         {camera?.storage_profile && (
@@ -162,7 +164,7 @@ export const EventPreview = ({
                             onChange={(e) => setAutoplayNext(e.target.checked)}
                             className="rounded border-gray-400 text-primary focus:ring-primary"
                         />
-                        <label htmlFor="autoplayNextDesktop" className="text-xs font-medium cursor-pointer select-none">Auto-next</label>
+                        <label htmlFor="autoplayNextDesktop" className="text-xs font-medium cursor-pointer select-none">{t('timeline.preview.autoNext')}</label>
                         {autoplayNext && (
                             <select
                                 value={autoplayDirection}
@@ -223,7 +225,7 @@ export const EventPreview = ({
                         onEnded={handleVideoEnded}
                         onLoadedMetadata={(e) => e.target.playbackRate = playbackSpeed}
                     >
-                        Your browser does not support video.
+                        {t('timeline.preview.noVideoSupport')}
                     </video>
                 ) : (
                     <img
